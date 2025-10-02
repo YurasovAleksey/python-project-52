@@ -33,7 +33,8 @@ DEBUG = os.getenv('DEBUG', False)
 
 ALLOWED_HOSTS = ['localhost',
                  'webserver',
-                 '127.0.0.1'
+                 '127.0.0.1',
+                 'https://python-project-52-1-wmx3.onrender.com'
                  ]
 
 
