@@ -1,0 +1,18 @@
+build:
+	chmod +x ./build.sh
+	./build.sh
+
+install:
+	uv sync
+
+collectstatic:
+	uv python manage.py collectstatic --noinput
+
+migrate:
+	uv run python manage.py migrate --noinput
+
+render-start:
+	gunicorn task_manager.wsgi
+
+run:
+	uv run python manage.py runserver
