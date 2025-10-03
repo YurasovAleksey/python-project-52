@@ -7,7 +7,7 @@ Django-based task management application.
 
 ## Deployment
 
-The application is deployed on Render: ...
+The application is deployed on Render: https://python-project-52-1-wmx3.onrender.com
 
 ## Local Development
 
