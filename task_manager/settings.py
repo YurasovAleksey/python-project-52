@@ -41,6 +41,7 @@ ALLOWED_HOSTS = ['localhost',
 # Application definition
 
 INSTALLED_APPS = [
+    'task_manager.users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
