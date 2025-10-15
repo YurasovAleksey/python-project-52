@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<h1 class="my-4">Вход</h1>
+  
+<form method="post">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  {% with login_text="Войти" %}
+    {% bootstrap_button login_text button_type="submit" button_class="btn-primary" %}
+  {% endwith %}
+</form>
+{% endblock %}
