@@ -1,10 +1,10 @@
 from django.contrib import messages
-from django.contrib.auth import login, logout
+from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
+from django.db.models import ProtectedError
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
 from .models import User
 from .forms import UserRegisterForm, UserUpdateForm, CustomUserLoginForm
@@ -58,11 +58,18 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def handle_no_permission(self):
         messages.error(self.request, 'У вас нет прав для изменения другого пользователя.')
         return redirect('users_list')
-    
-    def form_valid(self, form):
-        messages.success(self.request, 'Пользователь успешно удален')
-        return super().form_valid(form)
 
+    def post(self, request, *args, **kwargs):
+        try:
+            result = super().post(request, *args, **kwargs)
+            messages.success(self.request, 'Пользователь успешно удален')
+            return result
+        except ProtectedError:
+            messages.error(
+                request,
+                'Невозможно удалить пользователя, потому что он используется'
+            )
+            return redirect(self.success_url)
 
 class CustomLoginView(LoginView):
     form_class = CustomUserLoginForm

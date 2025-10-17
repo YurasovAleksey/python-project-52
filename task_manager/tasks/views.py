@@ -6,15 +6,29 @@ from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django_filters.views import FilterView
 from .models import Task
 from .forms import TaskForm
+from .filters import TaskFilter
 
 
-class TaskListView(LoginRequiredMixin, ListView):
+class TaskListView(LoginRequiredMixin, FilterView):
     model = Task
     template_name = 'tasks/tasks_list.html'
     context_object_name = 'tasks'
     login_url = reverse_lazy('login')
+    filterset_class = TaskFilter
+
+    def get_queryset(self):
+        return Task.objects.all().select_related(
+            'status', 'author', 'executor'
+        ).prefetch_related('labels').order_by('-created_at')
+    
+    def get_filterset_kwargs(self, filterset_class):
+        kwargs = super().get_filterset_kwargs(filterset_class)
+        if kwargs['data'] is None:
+            kwargs['data'] = {}
+        return kwargs
 
 
 class TaskDetailView(LoginRequiredMixin, DetailView):
