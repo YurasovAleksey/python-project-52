@@ -1,0 +1,16 @@
+line-length = 80
+exclude = [
+    "**/migrations/**",
+    "**/__pycache__/**",
+    "**/.venv/**",
+    "**/.env/**",
+    "**/settings.py"
+]
+
+[lint.per-file-ignores]
+  # init modules can contain the local imports, logic, unused imports
+"__init__.py" = ["F401"]
+
+[lint]
+preview = true
+select = ["E", "F", "I", "C90"]

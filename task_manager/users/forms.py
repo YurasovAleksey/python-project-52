@@ -1,48 +1,53 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+
 from .models import User
 
 
 class UserRegisterForm(UserCreationForm):
     password1 = forms.CharField(
         required=True,
-        label='Пароль',
+        label="Пароль",
         widget=forms.PasswordInput,
-        help_text='Ваш пароль должен содержать как минимум 3 символа.'
+        help_text="Ваш пароль должен содержать как минимум 3 символа.",
     )
     password2 = forms.CharField(
         required=True,
-        label='Подтверждение пароля',
+        label="Подтверждение пароля",
         widget=forms.PasswordInput,
-        help_text='Для подтверждения введите, пожалуйста, пароль ещё раз.'
+        help_text="Для подтверждения введите, пожалуйста, пароль ещё раз.",
     )
+
     class Meta:
         model = User
         fields = [
-            'first_name',
-            'last_name',
-            'username',
-            'password1',
-            'password2',
+            "first_name",
+            "last_name",
+            "username",
+            "password1",
+            "password2",
         ]
         labels = {
-            'first_name': _('Имя'),
-            'last_name': _('Фамилия'),
-            'username': _('Имя пользователя'),
-            'password1': _('Пароль'),
-            'password2': _('Подтверждение пароля'),
+            "first_name": "Имя",
+            "last_name": "Фамилия",
+            "username": "Имя пользователя",
+            "password1": "Пароль",
+            "password2": "Подтверждение пароля",
         }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-            
-        self.fields['username'].help_text = _(
-            'Обязательное поле. Не более 150 символов. Только буквы, цифры и @/./+/-/_.'
+
+        self.fields[
+            "username"
+        ].help_text = (
+        "Обязательное поле. Не более 150 символов. "
+        "Только буквы, цифры и @/./+/-/_."
         )
-            
-        self.fields['password1'].help_text = _(
-            '• Ваш пароль должен содержать как минимум 3 символа.'
-        )
+
+        self.fields[
+            "password1"
+        ].help_text = "• Ваш пароль должен содержать как минимум 3 символа."
 
 
 class UserUpdateForm(UserRegisterForm):
@@ -51,34 +56,37 @@ class UserUpdateForm(UserRegisterForm):
     class Meta:
         model = User
         fields = [
-            'first_name',
-            'last_name',
-            'username',
+            "first_name",
+            "last_name",
+            "username",
         ]
         labels = {
-            'first_name': _('Имя'),
-            'last_name': _('Фамилия'),
-            'username': _('Имя пользователя'),
+            "first_name": "Имя",
+            "last_name": "Фамилия",
+            "username": "Имя пользователя",
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].validators = []
+        self.fields["username"].validators = []
 
     def clean_username(self):
-        username = self.cleaned_data.get('username')
+        username = self.cleaned_data.get("username")
         if username:
             existing_user = User.objects.filter(username=username).first()
             if existing_user and existing_user.pk != self.instance.pk:
-                raise forms.ValidationError('Пользователь с таким именем пользователя уже существует')
+                raise forms.ValidationError(
+                    "Пользователь с таким именем пользователя уже существует"
+                )
         return username
+
 
 class CustomUserLoginForm(AuthenticationForm):
     username = forms.CharField(
-        label='Имя пользователя',
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+        label="Имя пользователя",
+        widget=forms.TextInput(attrs={"class": "form-control"}),
     )
     password = forms.CharField(
-        label='Пароль',
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        label="Пароль",
+        widget=forms.PasswordInput(attrs={"class": "form-control"}),
     )

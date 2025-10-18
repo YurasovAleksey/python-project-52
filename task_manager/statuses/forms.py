@@ -6,5 +6,5 @@ from .models import Status
 class StatusForm(ModelForm):
     class Meta:
         model = Status
-        fields = ['name']
-        labels = {'name': 'Имя'}
+        fields = ["name"]
+        labels = {"name": "Имя"}
