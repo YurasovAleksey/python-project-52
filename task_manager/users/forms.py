@@ -38,11 +38,9 @@ class UserRegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields[
-            "username"
-        ].help_text = (
-        "Обязательное поле. Не более 150 символов. "
-        "Только буквы, цифры и @/./+/-/_."
+        self.fields["username"].help_text = (
+            "Обязательное поле. Не более 150 символов. "
+            "Только буквы, цифры и @/./+/-/_."
         )
 
         self.fields[
