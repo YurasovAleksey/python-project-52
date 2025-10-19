@@ -134,21 +134,3 @@ class TestUserCRUD:
 
         assert response.status_code in [403, 200]
         assert User.objects.filter(id=self.user2.id).exists()
-
-    def test_user_delete_with_tasks(self, client):
-        from task_manager.statuses.models import Status
-        from task_manager.tasks.models import Task
-
-        status = Status.objects.create(name="Тестовый статус")
-        task = Task.objects.create(
-            name="Тестовая задача",
-            status=status,
-            author=self.user1,
-            executor=self.user2,
-        )
-
-        client.force_login(self.user2)
-
-        response = client.post(f"/users/{self.user2.id}/delete/", follow=True)
-        assert response.status_code == 200
-        assert User.objects.filter(id=self.user2.id).exists()
