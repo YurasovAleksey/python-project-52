@@ -18,6 +18,9 @@ jobs:
         run: |
           pip install uv
           make install
+      - name: Run migrations
+        run: |
+          make migrate
       - name: Run linter and pytest
         run: |
           make check
