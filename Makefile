@@ -33,6 +33,6 @@ test:
 	uv run pytest
 
 test-coverage:
-	uv run pytest --cov=gendiff --cov-report=xml tests/
+	uv run pytest --cov=task_manager --cov-report=xml --cov-report=html task_manager/
 
 check: test lint
