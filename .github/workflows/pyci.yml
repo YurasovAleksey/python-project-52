@@ -25,7 +25,7 @@ jobs:
         run: |
           make check
       - name: SonarQubeScan
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSource/sonarqube-scan-action@v5@2f77a1ec69fb1d595b06f35ab27e97605bdef703
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
@@ -33,3 +33,5 @@ jobs:
             -Dsonar.projectKey=YurasovAleksey_python-project-52
             -Dsonar.organization=yurasov
             -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.tests=.
+            -Dsonar.test.inclusions=**/tests.py
