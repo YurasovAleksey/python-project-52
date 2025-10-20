@@ -15,7 +15,6 @@ class CustomRollbarNotifierMiddleware(RollbarNotifierMiddleware):
 
         return extra_data
 
-
     def get_payload_data(self, request, exc):
         payload_data = dict()
 
