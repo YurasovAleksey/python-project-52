@@ -3,7 +3,7 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=YurasovAleksey_python-project-52&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=YurasovAleksey_python-project-52)
 
-
+[![Python CI](https://github.com/YurasovAleksey/python-project-52/actions/workflows/pyci.yml/badge.svg)](https://github.com/YurasovAleksey/python-project-52/actions/workflows/pyci.yml)
 
 # Task Manager
 
