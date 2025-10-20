@@ -15,3 +15,7 @@ pycache/
 env/
 venv/
 .venv/
+staticfiles/
+htmlcov/
+.ruff_cache/
+.pytest_cache/
