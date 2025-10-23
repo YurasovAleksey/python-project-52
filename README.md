@@ -5,6 +5,8 @@
 
 [![Python CI](https://github.com/YurasovAleksey/python-project-52/actions/workflows/pyci.yml/badge.svg)](https://github.com/YurasovAleksey/python-project-52/actions/workflows/pyci.yml)
 
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=YurasovAleksey_python-project-52&metric=coverage)](https://sonarcloud.io/summary/new_code?id=YurasovAleksey_python-project-52)
+
 # Task Manager
 
 Веб-приложение для управления задачами, разработанное на Django. Позволяет создавать, назначать и отслеживать задачи с системой статусов и меток.
