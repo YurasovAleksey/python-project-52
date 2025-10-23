@@ -32,6 +32,7 @@ jobs:
           args: >
             -Dsonar.projectKey=YurasovAleksey_python-project-52
             -Dsonar.organization=yurasov
+            -Dsonar.sources=task_manager
             -Dsonar.python.coverage.reportPaths=coverage.xml
             -Dsonar.tests=.
             -Dsonar.test.inclusions=**/tests.py
