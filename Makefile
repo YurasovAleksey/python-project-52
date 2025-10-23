@@ -35,4 +35,4 @@ test:
 test-coverage:
 	uv run pytest --cov=task_manager --cov-report=xml --cov-report=html task_manager/
 
-check: test lint
+check: test-coverage lint
