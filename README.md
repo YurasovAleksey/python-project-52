@@ -68,3 +68,6 @@ make test-coverage - тесты с отчетом покрытия
 Алексей Юрасов
 
 Ссылка на проект на Render: https://python-project-52-1-wmx3.onrender.com
+
+
+[def]: https://sonarcloud.io/summary/new_code?id=YurasovAleksey_python-project-52
