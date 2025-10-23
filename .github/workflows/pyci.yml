@@ -21,6 +21,9 @@ jobs:
       - name: Run migrations
         run: |
           make migrate
+      - name: Run tests with coverage
+        run: |
+          make test-coverage
       - name: Run linter and pytest
         run: |
           make check
